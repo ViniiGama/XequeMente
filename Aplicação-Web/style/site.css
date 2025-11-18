@@ -1,0 +1,273 @@
+body{
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    font-family: cinzel;
+}
+
+/* Início navbar */
+.navbar{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    justify-content: space-between;
+    background-color: rgba(22, 22, 22, 0.4);
+    position: fixed;
+    backdrop-filter: blur(10px);
+}
+
+.navbar_logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8%;
+    height: 100%;
+    /* background-color: blue; */
+}
+
+.navbar_logo img{
+    /* background-color: red; */
+    width: 100%;
+    height: 80%;
+}
+
+.navbar_botoes{
+    /* background-color: blue; */
+    width: 26%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    /* background-color: red; */
+}
+
+.navbar_botoes a, button{
+    color: white;
+    text-decoration: none;
+    
+}
+
+.navbar_botoes button{
+    width: 25%;
+    height: 5vh;
+    border-radius: 6px;
+    font-family: cinzel;
+    font-weight: bold;
+    border: none;
+    background-color: #E0C066;
+}
+
+.navbar_botoes button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.navbar a:hover{
+    color: #E0C066;
+}
+/* Fim navbar */
+
+/* Início Main */
+.container{
+    background-color: #000000;
+    /* padding-top: 10vh; */
+}
+
+.inicio{
+    height: 100vh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.texto_esquerdo{
+    width: 40%;
+    display: flex;
+    align-items: end;
+    /* justify-content: end; */
+    flex-direction: column;
+    /* background-color: red; */
+    color: white;
+}
+
+.texto_esquerdo p{
+    width: 90%;
+    /* background-color: blue; */
+}
+
+.texto_esquerdo_titulo{
+    width: 90%;
+    /* background-color: green; */
+}
+
+.texto_esquerdo_titulo h1{
+    font-size: 60px;
+}
+
+.texto_esquerdo p{
+    font-size: 20px;
+}
+
+.texto_esquerdo_titulo b{
+    color: #E0C066;
+    /* background-color: green; */
+}
+
+
+.container_imagem_texto_barra{
+    background-color: #000000;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    
+}
+
+.coluna_imagem {
+    background-color: red;
+    width: 35%;
+}
+
+.coluna_texto{
+    background-color: white;
+    width: 35%;
+}
+
+.coluna_barra{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 10vw;
+}
+
+.linha{
+    width: 5px;
+    min-height: 58vh;
+    background-color: #E0C066;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Inicio Desenvolvedor */
+.container_desenvolvedor{
+    background-color: #000000;
+}
+
+.div_desenvolvedor{
+    display: flex;
+    justify-content: center ;
+    background-color: #000000;
+}
+
+.div_desenvolvedor h1{
+    color: #E0C066;
+}
+
+
+.div_imagem_texto{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.texto_texto{
+    width: 50%;
+    height: 50%;
+    color: white;
+}
+
+.texto_texto b{
+    color: #E0C066;
+}
+
+/* Fim Desenvolvedor */
+
+
+/* Fim Main */
+.container_footer{
+    width: 100%;
+    display: flex;
+    background-color:#000000;
+}
+
+.footer_imagens{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.footer_imagens img{
+    /* background-color: #E0C066; */
+    width: 250px;
+    height: 100px;
+}
+
+.footer_blocos{
+    display: flex;
+    width: 100%;
+}
+
+.footer_blocos h1{
+    color: #E0C066;
+}
+
+.footer_blocos p{
+    color: white;
+}
+
+.footer_bloco_sessao{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* background-color: blue; */
+}
+
+.footer_bloco_sessao a{
+    color: white;
+    text-decoration: none;
+}
+
+.footer_bloco_sessao a:hover{
+    color: #E0C066;
+}
+
+.footer_bloco_projeto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    /* background-color: gray; */
+}
+
+.footer_bloco_projeto p{
+    width: 52%;
+    /* background-color: white; */
+}
+
+.footer_bloco_contato{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: green; */
+}
+
+.footer_bloco_contato a{
+    color: white;
+    text-decoration: none;
+}
+
+.footer_bloco_contato a:hover{
+    color: #E0C066;
+}
+
+/* Início footer */
+
+
+/* Fim footer */
