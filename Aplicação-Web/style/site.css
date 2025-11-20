@@ -124,12 +124,13 @@ body{
 }
 
 .coluna_imagem {
-    background-color: red;
+    /* background-color: red; */
     width: 35%;
 }
 
 .coluna_texto{
-    background-color: white;
+    color: white;
+    /* background-color: white; */
     width: 35%;
 }
 

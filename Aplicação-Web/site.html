@@ -17,10 +17,20 @@
         </div>
 
         <div class="navbar_botoes">
-            <p><a href="http://">Início</a></p>
-            <p><a href="http://">Sobre</a></p>
-            <button>Login</button>
-            <button>Cadastro</button>
+            <p><a href="">Início</a></p>
+            <p><a href="#Sobre">Sobre</a></p>
+            <button onclick="login()">Login</button>
+            <button onclick="cadastro()">Cadastro</button>
+            
+            <script>
+                function login(){
+                    window.location.href='login.html'
+                }
+
+                function cadastro(){
+                    window.location.href='cadastro.html'
+                }
+            </script>
         </div>
     </div>
 
@@ -39,7 +49,7 @@
                 </p>
             </div>
         </div>
-        <div class="container_imagem_texto_barra">
+        <div id="Sobre" class="container_imagem_texto_barra">
             <div class="coluna_texto">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut

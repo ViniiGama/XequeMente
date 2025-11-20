@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <div class="container_cadastro">
-            <img src="assets/logoBranco_NomeXequeMente.svg" alt="logo_XequeMente">
+            <img onclick="inicio()" src="assets/logoBranco_NomeXequeMente.svg" alt="logo_XequeMente">
             <h1>Faça seu Login</h1>
             
             <input type="text" placeholder="EMAIL" id="input_email"><br><br>
@@ -27,3 +27,8 @@
     </div>
     </body>
 </html>
+<script>
+    function inicio(){
+        window.location.href='site.html'
+    }
+</script>
