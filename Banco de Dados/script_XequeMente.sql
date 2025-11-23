@@ -11,22 +11,24 @@ experiencia INT
 
 CREATE TABLE quiz(
 idQuiz INT PRIMARY KEY AUTO_INCREMENT,
-nome VARCHAR(45),
-descricao VARCHAR(100),
-pergunta VARCHAR(100)
+nome VARCHAR(45)
 );
 
 CREATE TABLE tentativa(
 idTentativa INT,
 fkUsuario INT,
 fkQuiz INT,
+CONSTRAINT PkComposta
 PRIMARY KEY (idTentativa, fkUsuario, fkQuiz),
 CONSTRAINT fkUsuarioTentativa
 	FOREIGN KEY (fkUsuario)
 		REFERENCES usuario(idUsuario),
 CONSTRAINT fkQuizTentativa
 	FOREIGN KEY (fkQuiz)
-		REFERENCES quiz(idQuiz)
-);
+		REFERENCES quiz(idQuiz),
+qtdAcerto INT,
+qtdErro INT
 
+);
+SELECT * FROM usuario;
 
