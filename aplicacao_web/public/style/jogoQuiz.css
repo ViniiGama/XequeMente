@@ -1,0 +1,205 @@
+body{
+    margin: 0;
+    height: 100vh;
+    color: white;
+    font-family: cinzel;
+}
+
+.container{
+    display: flex;
+    height: 100vh;
+    /* background-color: black; */
+}
+
+/* inicio_menu_lateral */
+.container_menu_lateral{
+    width: 25%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container_linha_menu_lateral{
+    width: 90%;
+    height: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    /* background-color: blue; */
+    border: 2px solid #E0C066;
+
+}
+
+.logo_botoes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.logo_botoes img{
+    width: 100%;
+}
+
+.logo_botoes b{
+    color: #E0C066;
+}
+
+.logo_botoes a{
+    text-decoration: none;
+    color: #E0C066;
+}
+
+.logo_botoes a:hover{
+    text-decoration: none;
+    color: white;
+}
+
+.botao_sair{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 5%;
+    /* background-color: green; */
+}
+
+.botao_sair button{
+    font-weight: bold;
+    color: #E0C066;
+    border-color: #E0C066;
+    background-color: transparent;
+    width: 50%;
+}
+
+button:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+/* fim_menu_lateral */
+
+/* inicio dashboard */
+
+.container_quiz{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 75%;
+    background-color: black;
+}
+
+.container_linha_quiz{
+    width: 98%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 2px solid #E0C066;
+    gap: 20px;
+}
+
+.tudo{
+    /* background-color: red; */
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.texto_cima_botao{
+    /* background-color: blue; */
+    height: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.texto_cima_botao b{
+    color: #E0C066;
+}
+
+.botao_iniciar{
+    font-family: cinzel;
+    font-weight: bold;
+    border: none;
+    height: 80px;
+    width: 350px;
+    border-radius: 10px;
+    color: white;
+    background-color: #E0C066;
+}
+
+.pontuacaoEJogo{
+    /* background-color: yellow; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.container_pontuacao {
+    width: 100%;
+    /* background-color: green; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container_perguntas_respostas{
+    width: 100%;
+    height: 80%;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+.infoQuestao, .perguntaDaQuestaoAtual, .opcoes_respostas    {
+    background-color: #E0C066;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    height: 11%;
+}
+
+.opcoes_respostas{
+    display: flex;
+    flex-direction: column;
+    height: 20%;
+    /* gap: 20px; */
+}
+
+.botoes_quiz{
+    width: 60%;
+    height: 20%;
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: space-around;
+}
+
+.botoes_quiz button{
+    font-family: cinzel;
+    background-color: #E0C066;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    width: 30%;
+    height: 70%;
+}
+
+
+/* fim dashboard */

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="assets/logoBranco_NomeXequeMente.svg" />
+    <link rel="stylesheet" href="style/dashboard.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="js/sessao.js"></script>
+    <script src="./../js/alerta.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script> -->
+    <title>XequeMente</title>
+  </head>
+
+  <body onload="carregarDashboard()">
+    <div class="container">
+      <div class="container_menu_lateral">
+        <div class="container_linha_menu_lateral">
+          <div class="logo_botoes">
+            <img src="assets/logoXequeMente2.png" alt="" />
+            <h2>Bem-vindo, <b id="b_usuario">usuário</b>!</h2>
+
+            <h1><a href="jogoQuiz.html">Jogar</a></h1>
+            <h1>Estatística</h1>
+          </div>
+
+          <div class="botao_sair">
+            <button class="btn-logout" onclick="limparSessao()">Sair</button>
+          </div>
+        </div>
+      </div>
+      <div class="container_estatistica">
+        <div class="container_linha_estatistica">
+          <div class="nivel_jogador">
+            <h1>Nível do Jogador</h1>
+            <div class="container_barra_nivel_jogador">
+              <h1>1</h1>
+              <div class="barra_nivel" id="barra_nivel"></div>
+              <h1>2</h1>
+            </div>
+          </div>
+
+          <div class="container_kpis">
+            <div class="kpi1">
+              <div class="textoKpi">
+                <p>Partidas Jogadas</p>
+              </div>
+
+              <h1 id="kpiTotalPartidas"></h1>
+            </div>
+
+            <div class="kpi4">
+              <div class="textoKpi">
+                <p>Quantidade de acertos (última partida)</p>
+              </div>
+              <h1 id="kpiAcertosUltimo"></h1>
+            </div>
+
+            <div class="kpi5">
+              <div class="textoKpi">
+                <p>Quantidade de erros (última partida)</p>
+              </div>
+              <h1 id="kpiErrosUltimo"></h1>
+            </div>
+
+            <div class="kpi2">
+              <div class="textoKpi">
+                <p>Maior quantidade de acertos por partida</p>
+              </div>
+              <h1 id="kpiTotalAcertos"></h1>
+            </div>
+
+            <div class="kpi3">
+              <div class="textoKpi">
+                <p>Maior quantidade de erros por partida</p>
+              </div>
+
+              <h1 id="kpiTotalErros"></h1>
+            </div>
+          </div>
+
+          <div class="container_grafico">
+            <canvas id="barra"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+  function sair() {
+    window.location.href = "site.html";
+  }
+
+  function kpiTotalAcertos() {
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(`kpiTotalAcertos/kpiTotalAcertos/${idUsuario}`).then(function (
+      response
+    ) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(resposta);
+          document.getElementById("kpiTotalAcertos").innerHTML =
+            resposta[0].melhorPontuacao;
+        });
+      }
+    });
+  }
+
+  function kpiTotalErros() {
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(`kpiTotalErros/kpiTotalErros/${idUsuario}`).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(resposta);
+          document.getElementById("kpiTotalErros").innerHTML =
+            resposta[0].piorPontuacao;
+        });
+      }
+    });
+  }
+
+  function kpiTotalPartidas() {
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(`kpiTotalPartidas/kpiTotalPartidas/${idUsuario}`).then(function (
+      response
+    ) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(resposta);
+          document.getElementById("kpiTotalPartidas").innerHTML =
+            resposta[0].totalPartidas;
+        });
+      }
+    });
+  }
+
+  function kpiErrosUltimo() {
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(`/kpiErrosUltimo/kpiErrosUltimo/${idUsuario}`).then(function (
+      response
+    ) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(resposta);
+          document.getElementById("kpiErrosUltimo").innerHTML =
+            resposta[0].qtdErro;
+        });
+      }
+    });
+  }
+
+  function kpiAcertosUltimo() {
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(`/kpiAcertosUltimo/kpiAcertosUltimo/${idUsuario}`).then(function (
+      response
+    ) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(resposta);
+          document.getElementById("kpiAcertosUltimo").innerHTML =
+            resposta[0].qtdAcerto;
+        });
+      }
+    });
+  }
+
+  
+
+  function carregarDashboard() {
+    kpiAcertosUltimo();
+    kpiErrosUltimo();
+    kpiTotalAcertos();
+    kpiTotalErros();
+    kpiTotalPartidas();
+    obterDados();
+  }
+
+  // Função chamada ao carregar a página para obter e processar os dados
+  function obterDados() {
+    var idUsuario = sessionStorage.ID_USUARIO;
+
+    fetch(
+      `http://localhost:3333/dadosAcertosGrafico/dadosAcertosGrafico/${idUsuario}`
+    )
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        // data.reverse();
+        plotarGraficoBarra(data);
+        console.log("Resposta da API:", data);
+      })
+      .catch(function (err) {
+        console.log("Erro ao obter dados do gráfico:", err);
+      });
+  }
+
+  // Função para plotar o gráfico de barra
+  function plotarGraficoBarra(dados) {
+    var acertos = [];
+    var tentativas = [];
+
+    // Preenchendo os arrays com os dados
+    for (var i = 0; i < dados.length; i++) {
+      acertos.push(dados[i].qtdAcerto);
+      tentativas.push(`${dados[i].idTentativa}° Partida`);
+    }
+
+    // Capturando o elemento canvas pelo id
+    var ctx = document.getElementById("barra").getContext("2d");
+    // Criando o gráfico de barra usando o Chart.js
+    var myChart = new Chart(ctx, {
+      type: "bar", // Tipo de gráfico: barra
+      data: {
+        // Dados para o gráfico
+        labels: tentativas, // Rótulos no eixo X
+        datasets: [
+          {
+            label: "Acertos por tentativa", // Nome do conjunto de dados
+            data: acertos, // Dados dos votos
+            backgroundColor: [
+              "#E0C066", // Cor de fundo das barras
+            ],
+            borderColor: [
+              "#E0C066", // Cor da borda das barras
+            ],
+            borderWidth: 1, // Largura da borda das barras
+          },
+        ],
+      },
+      options: {
+        scales: {
+          x: {
+            ticks: {
+              color: "white",
+            },
+          },
+          y: {
+            ticks: {
+              color: "white",
+            },
+          },
+        },
+      },
+    });
+  }
+
+
+  function teste(){
+
+    var barra = document.getElementById('barra_nivel')
+
+    barra.style.borderRadius = '1%'
+    // barra.style.backgroundColor = '#E0C066'
+
+  }
+
+  teste()
+
+
+</script>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/cadastrologin.css">
+  <link rel="icon" href="assets/logoBranco_NomeXequeMente.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>XequeMente</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="imagem_xadrez">
+      <img src="assets/pecas-de-xadrez-brancas-no-tabuleiro-de-xadrez-conceito-de-rei.jpg" alt="Rei Branco">
+    </div>
+    <div class="container_cadastro">
+      <img onclick="Imagem_inicio()" src="assets/Group 32.png" alt="logo_XequeMente">
+      <h1>Faça seu Cadastro</h1>
+
+      <input type="text" placeholder="NOME DE USUÁRIO" id="nome_input"><br>
+      <input oninput="analisarEmail()" type="email" placeholder="EMAIL" id="email_input"><br>
+      <div id="div_email"></div>
+      <input oninput="validarSenha()" type="text" placeholder="SENHA" id="input_senha"><br>
+      <div id="div_senha"></div>
+      <input oninput="confirmarSenha()" type="text" placeholder="CONFIRMAR SENHA" id="confirmacao_senha_input"><br>
+      <div id="div_confirmSenha"></div>
+
+      <button onclick="cadastrar()">Cadastrar</button>
+      <div id="div_mensagem_erro"></div>
+      <p>Já possui uma conta? <a href="login.html"><b>Acesse aqui</b></a></p>
+    </div>
+
+
+  </div>
+</body>
+
+</html>
+
+<script>
+  function Imagem_inicio() {
+    window.location.href = 'site.html'
+  }
+  // Array para armazenar empresas cadastradas para validação de código de ativação 
+  // let listaEmpresasCadastradas = [];
+
+  function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = input_senha.value;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == ""
+    ) {
+      div_mensagem_erro.innerHTML = `<p style="color:red">Preencha todos os campos</p>`
+      // cardErro.style.display = "block";
+      // mensagem_erro.innerHTML =
+      //   "(Mensagem de erro para todos os campos em branco)";
+
+      // finalizarAguardar();
+      return false;
+    }
+    // else if  {
+    //   // setInterval(sumirMensagem, 5000);
+    // }
+
+    if (!emailValido || !senhaValida || !confirmValido) {
+    div_mensagem_erro.innerHTML = `<p style="color:red">Verifique os campos e tente novamente</p>`;
+    return;
+  }
+
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          // cardErro.style.display = "block";
+
+          // mensagem_erro.innerHTML =
+          //   "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          // limparFormulario();
+          // finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        // finalizarAguardar();
+      });
+
+    return false;
+  }
+
+    var listaCaracteres = ['!', '@', '#', '$', '%', '&', '*'];
+    var listaNumeros = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+
+    var emailValido = false;
+    var telefoneValido = false;
+    var senhaValida = false;
+    var confirmValido = false;
+
+
+  function analisarEmail() {
+        // Variável do campo email
+        var email = email_input.value;
+
+        if (!email.includes('@')) {
+            div_email.innerHTML = '<span style="color:red">E-mail deve incluir @</span>'
+        } else {
+            emailValido = true;
+            div_email.innerHTML = '';
+        }
+
+        if (email == '') {
+            div_email.innerHTML = '';
+        }
+    }
+
+
+  function validarSenha() {
+        // Variável do campo senha
+        var senha = input_senha.value;
+        senhaValida = false;
+
+        // Variáveis de configuração
+        var tamanhoSenha = senha.length;
+        var cont1 = 0;
+        var cont2 = 0;
+        var mensagem = "";
+
+        // Valores booleanos com padrões de senha
+        var tamanhoValido = false;
+        var caractereValido = false;
+        var numeroValido = false;
+        var minusculoValido = false;
+        var maiusculoValido = false;
+
+        // Mínimo 8 caracteres - validação quando o padrão é atingido
+        if (tamanhoSenha < 8) {
+            mensagem += `<span style="color:red"> 8 caracteres, </span><br> `;
+        } else {
+            tamanhoValido = true;
+        }
+
+        // Mínimo um caractere especial - validação quando o padrão é atingido
+        // Usando while até o includes validar todos os caracteres da Lista de Caracteres Especiais
+        while (cont1 < listaCaracteres.length) {
+            if (senha.includes(listaCaracteres[cont1])) {
+                caractereValido = true;
+            }
+            cont1++;
+        } if (!caractereValido) {
+            mensagem += `<span style="color:red"> 1 caractere especial, </span><br> `;
+        }
+
+        // Mínimo um número - validação quando o padrão é atingido
+        // Usando while até o includes validar todos os número da Lista de Números
+        while (cont2 < listaNumeros.length) {
+            if (senha.includes(listaNumeros[cont2])) {
+                numeroValido = true;
+            }
+            cont2++;
+        } if (!numeroValido) {
+            mensagem += `<span style="color:red"> 1 número, </span><br> `;
+        }
+
+        // Mínimo uma letra maiúscula - validação quando o padrão é atingido
+        if (senha == senha.toLowerCase()) {
+            mensagem += '<span style="color:red"> 1 Letra Maiúscula, </span><br> ';
+        } else {
+            maiusculoValido = true;
+        }
+
+        // Mínimo uma letra minúscula - validação quando o padrão é atingido
+        if (senha == senha.toUpperCase()) {
+            mensagem += '<span style="color:red">1 Letra Minúscula, </span><br>';
+        } else {
+            minusculoValido = true;
+        }
+
+        div_senha.innerHTML = mensagem;
+
+        // Validação geral 
+        if (tamanhoValido && caractereValido && numeroValido && maiusculoValido && minusculoValido) {
+            senhaValida = true;
+        }
+    }
+
+
+    function confirmarSenha() {
+        // Variáveis do campo confirmar senha
+        var senha = input_senha.value;
+        var confirmSenha = confirmacao_senha_input.value;
+
+        // Variável de configuração
+        var validacao = "";
+
+        if (senha != confirmSenha) {
+            validacao = '<span style="color:red">As senhas precisam ser as mesmas</span>';
+        } else {
+            confirmValido = true;
+        }
+
+        if (confirmSenha == '') {
+            validacao = "";
+        }
+
+        div_confirmSenha.innerHTML = validacao;
+    }
+
+
+</script>

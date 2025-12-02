@@ -1,0 +1,58 @@
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    font-family: 'Cinzel', serif;
+    background-size: cover;
+}
+
+.container-falas{
+    /* background-color: red; */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container-falas p,
+.container-falas h1,
+.container-falas h3 {
+    color: white;
+    font-size: 30px;
+    text-align: center;
+}
+
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    color: #E0C066;
+}
+
+b{
+    color: #E0C066;
+}
+
+.container-falas img{
+    height: 30%;
+}
+
+.container-imagem{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: blue; */
+}
+
+.container-imagem img{
+    height: 80%;
+}
