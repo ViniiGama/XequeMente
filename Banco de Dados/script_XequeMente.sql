@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS XequeMente;
 CREATE DATABASE XequeMente;
 USE XequeMente;
 
@@ -54,7 +55,7 @@ ON q.idQuiz = t.fkUsuario
 GROUP by t.fkUsuario;
 
 SELECT totalPartidas FROM vwTotalPartidas
-	WHERE idUsuario = (SELECT idUsuario FROM usuario WHERE idUsuario = 1);
+	WHERE idUsuario = (SELECT idUsuario FROM usuario WHERE idUsuario = 3);
 
 -- Maior quantidade de acertos por partida
 CREATE OR REPLACE VIEW vwTotalAcertos AS 
@@ -64,7 +65,7 @@ ON q.idQuiz = t.fkUsuario
 GROUP by t.fkUsuario;
 
 SELECT melhorPontuacao FROM vwTotalAcertos
-	WHERE idUsuario = (SELECT idUsuario FROM usuario WHERE idUsuario = 1);
+	WHERE idUsuario = (SELECT idUsuario FROM usuario WHERE idUsuario = 3);
 
 -- Menor quantidade de acertos por partida
 CREATE OR REPLACE VIEW vwTotalErros AS 

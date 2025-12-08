@@ -101,12 +101,13 @@
   function kpiTotalAcertos() {
     var idUsuario = sessionStorage.ID_USUARIO;
 
-    fetch(`kpiTotalAcertos/kpiTotalAcertos/${idUsuario}`).then(function (
+    fetch(`/kpiTotalAcertos/kpiTotalAcertos/${idUsuario}`).then(function (
       response
     ) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(resposta);
+
           document.getElementById("kpiTotalAcertos").innerHTML =
             resposta[0].melhorPontuacao;
         });
